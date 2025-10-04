@@ -1,19 +1,21 @@
 import type { Request, Response, NextFunction } from "express";
 import { config } from "../config.js";
-export function middlewareLogResponse (
-    req: Request,
-    res: Response,
-    next: NextFunction,
+import { respondWithError } from "./json.js";
+
+export function middlewareLogResponse(
+  req: Request,
+  res: Response,
+  next: NextFunction,
 ) {
-    res.on("finish", () => {
-        const statusCode = res.statusCode;
+  res.on("finish", () => {
+    const statusCode = res.statusCode;
 
-        if (statusCode >= 300) {
-            console.log(`[NON-OK] ${req.method} ${req.url} - Status: ${statusCode}`);
-        }
+    if (statusCode >= 300) {
+      console.log(`[NON-OK] ${req.method} ${req.url} - Status: ${statusCode}`);
+    }
+  });
 
-    });
-    next();
+  next();
 }
 
 export function middlewareMetricsInc(
@@ -23,4 +25,18 @@ export function middlewareMetricsInc(
 ) {
   config.fileServerHits++;
   next();
+}
+
+export function errorMiddleWare(
+  err: Error,
+  _: Request,
+  res: Response,
+  __: NextFunction,
+) {
+  let statusCode = 500;
+  let message = "Something went wrong on our end";
+
+  console.log(err.message);
+
+  respondWithError(res, statusCode, message);
 }

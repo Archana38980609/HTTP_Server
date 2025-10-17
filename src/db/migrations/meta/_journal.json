@@ -15,6 +15,13 @@
       "when": 1760717144932,
       "tag": "0001_special_mimic",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1760730291703,
+      "tag": "0002_gray_white_queen",
+      "breakpoints": true
     }
   ]
 }

@@ -29,6 +29,13 @@
       "when": 1761410432745,
       "tag": "0003_green_firelord",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1761417288393,
+      "tag": "0004_redundant_rick_jones",
+      "breakpoints": true
     }
   ]
 }
